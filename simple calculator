@@ -1,0 +1,52 @@
+import msvcrt
+
+# Addition
+def add(x,y):
+    return x + y
+
+#Subtraction
+def subtract(x,y):
+    return x - y
+
+#Multiplication
+def multiply(x,y):
+    return x * y
+
+#Division
+def divide(x,y):
+    return x / y
+
+while True:
+    keypressed = msvcrt.getch()
+    if keypressed == b"\x1b":
+        print("bye")
+        break
+    else:
+        try:
+            num1 = float(input())
+        except ValueError:
+            print("SYNTAX ERROR")
+            continue
+
+        func = input()
+        if func in ('+', '-', '*', '/'):
+            try:
+                num2 = float(input())
+            except ValueError:
+                print("SYNTAX ERROR")
+                continue
+
+            if func == '+':
+                print(num1, " + ", num2, " = ", add(num1,num2))
+            elif func == '-':
+                print(num1, " - ", num2, " = ", subtract(num1,num2))
+            elif func == '*':
+                print(num1, " * ", num2, " = ", multiply(num1,num2))
+            elif func == '/':
+                try:
+                    print(num1, " / ", num2, " = ", divide(num1,num2))
+                except ZeroDivisionError as e:
+                    print("MATH ERROR")
+
+        else:
+            print("SYNTAX ERROR")
